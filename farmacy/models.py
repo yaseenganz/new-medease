@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+def gets_prescription(models.Model):
+    pass
+
