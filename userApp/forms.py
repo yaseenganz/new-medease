@@ -1,7 +1,17 @@
 from django import forms
-from .models import PatientProfile
+from .models import CustomUser,PatientProfile
 
-class PatientForm(forms.ModelForm):
+class PatientSignup(forms.ModelForm):
     class Meta:
-        model = PatientProfile
-        fields = '__all__'
+        model = CustomUser
+        fields = ['full_name','email','phone_number','password']
+        widgets = {
+            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Password'}),
+        }
+
+
+                
+        

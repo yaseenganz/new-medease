@@ -27,6 +27,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    # Add these lines to define related names
     groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
+
+
+class PatientProfile(models.Model):
+    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    GENDER_CHOICES = (('F','Female'),('M','Male'))
+    gender = models.CharField(choices=GENDER_CHOICES,max_length=1)
+
+    def __str__(self):
+        return self.user.email
