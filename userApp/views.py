@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from .forms import PatientForm
+from .forms import PatientSignup
 User = get_user_model()
 
 def PatientRegister(request):
-    form = PatientForm()
+    if request.metod == "POST":
+        
     context={
         'title':"SignUp",
         'form':form
