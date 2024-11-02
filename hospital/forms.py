@@ -33,8 +33,7 @@ class DoctorForm(forms.ModelForm):
 class tokenCreation(forms.ModelForm):
     class Meta:
         modle = PatientDetails
-        files = ['name', 'age', 'gender']
-        
+        files = ['name', 'age', 'gender', 'token_number']
             
 
 class HospitalForm(forms.ModelForm):
