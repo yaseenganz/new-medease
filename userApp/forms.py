@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser,PatientProfile
+from .models import CustomUser,PatientModel
 
 class PatientSignup(forms.ModelForm):
     class Meta:

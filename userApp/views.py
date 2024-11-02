@@ -5,7 +5,7 @@ User = get_user_model()
 
 def PatientRegister(request):
     if request.metod == "POST":
-        
+        form = PatientSignup()
     context={
         'title':"SignUp",
         'form':form

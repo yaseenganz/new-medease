@@ -19,5 +19,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('patient/',include('userApp.urls'))
+    path('patient/',include('userApp.urls')),
+    path('', include('tokenSystem.urls'), name='token_verification'),
 ]
