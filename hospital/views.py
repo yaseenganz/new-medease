@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import DoctorForm,HospitalForm
-from .models import DoctorModel
+from .models import DoctorModel,HospitalModel
 from django.contrib.auth import authenticate, login as auth_login
 
 
@@ -27,8 +27,15 @@ def DoctorSignup(request):
     return render(request, 'doctors/index.html', context)
 
 def HospitalRegistration(request):
-    form = HospitalForm()
+    if request.method == "POST":
+        form = HospitalForm(request.POST) 
+        if form.is_valid():
+            hospital = form.save()  
+            return redirect('dashboard-view')
+    else:
+        form = HospitalForm() 
+
     context = {
         "form": form
     }
-    return render(request,"hospital/index.html",context=context)
+    return render(request, "hospital/index.html", context=context)
