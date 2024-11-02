@@ -10,6 +10,8 @@ urlpatterns = [
 
     path('pharmacy/',include('farmacy.urls')),
 
+
+
     path('prescription/', include('prescription.urls')),
 
 ]

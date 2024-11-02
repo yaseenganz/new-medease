@@ -19,5 +19,3 @@ class PatientModel(models.Model):
         return self.user.username
     
 
-class Priscription(models.Model):
-    pass
