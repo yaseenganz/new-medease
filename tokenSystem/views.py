@@ -12,7 +12,7 @@ def create_token(request):
         patient.save()
         
         return HttpResponse(f"Created Token Successfully {patient.token_number}")
-    return render(request, "prescription/token.html")
+    return render(request, "token/token.html")
 
   
         
