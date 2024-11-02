@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Registration</title>
+  <link rel="stylesheet" href="{% static 'css/hospital-sign.css' %}">
+</head>
+<body>
+  <div class="registration-form">
+    <h1>Hospital Registration</h1>
+    <form method="POST" action="{% url 'hospial_form' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+               {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div class="error-message">
+                        {{ field.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+
+      <button type="submit" class="button">Register Hospital</button>
+    </form>
+  </div>
+</body>
+</html>

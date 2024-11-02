@@ -1,6 +1,6 @@
 from django import forms
 from .models import CustomUser
-from .models import DoctorModel
+from .models import DoctorModel,HospitalModel
 
 class DoctorForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -26,3 +26,9 @@ class DoctorForm(forms.ModelForm):
             email = self.cleaned_data.get('email')
             if CustomUser.objects.filter(email=email).exists():
                 raise forms.ValidationError("This email is already registered")
+            
+
+class HospitalForm(forms.ModelForm):
+    class Meta:
+        model = HospitalModel
+        fields = ['name','phone_number','location','license_number']
