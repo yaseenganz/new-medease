@@ -1,13 +1,13 @@
 from django import forms
-from .models import Prescription
+from .models import Prescriptions
 from hospital.models import PatientDetails
 
 class SubmitPrescription(forms.ModelForm):
     token_number = forms.IntegerField(help_text="Enter token number")
 
     class Meta:
-        model = Prescription
-        fields = ['text']  
+        model = Prescriptions
+        fields = ['text']
 
     def clean_token_number(self):
         token_number = self.cleaned_data.get('token_number')

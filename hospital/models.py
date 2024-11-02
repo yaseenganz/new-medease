@@ -42,7 +42,7 @@ class PatientDetails(models.Model):
 
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     hospital = models.ForeignKey(HospitalModel, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(DoctorModel,on_delete=models.CASCADE)
+    doctor = models.ForeignKey(DoctorModel,on_delete=models.CASCADE, blank=True, null=True)
     token_number = models.PositiveIntegerField(editable=False, unique=True)
 
     def save(self, *args, **kwargs):

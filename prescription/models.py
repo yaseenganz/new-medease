@@ -4,9 +4,7 @@ from userApp.models import PatientModel
 from hospital.models import DoctorModel
 
 
-
-
-class Prescription(models.Model):
+class Prescriptions(models.Model):
     patient = models.ForeignKey(PatientModel,on_delete=models.CASCADE)
     doctor = models.ForeignKey(DoctorModel,on_delete=models.CASCADE)
     hospital = models.ForeignKey(HospitalModel,on_delete=models.CASCADE)

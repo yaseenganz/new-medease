@@ -26,7 +26,7 @@
         <!-- Doctor Information Section -->
         <section class="doctor-info">
             <h3>Doctor Information</h3>
-            <p><strong>Name:</strong> {{ doctor.user.get_full_name }}</p>
+            <p><strong>Name:</strong> {{ form.pataint.name }}</p>
             <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
             <p><strong>License Number:</strong> {{ doctor.license_number }}</p>
         </section>
@@ -60,7 +60,7 @@
     <script>
         document.getElementById('fetch-patient-data').addEventListener('click', function() {
             const tokenNumber = document.getElementById('token-number').value;
-            fetch(`/token/view//${tokenNumber}/`)
+            fetch(`http://127.0.0.1:8000/prescription/token/view/${tokenNumber}/`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
