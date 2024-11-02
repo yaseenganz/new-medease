@@ -11,6 +11,6 @@ class HospitalModelList(admin.ModelAdmin):
 admin.site.register(HospitalModel, HospitalModelList)
 
 class PatientDetailsList(admin.ModelAdmin):
-    list_display = ('name', 'age', 'gender', 'hospital')
+    list_display = ('name', 'age', 'gender', 'hospital','token_number')
 admin.site.register(PatientDetails, PatientDetailsList)
 
