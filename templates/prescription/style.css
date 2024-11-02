@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.prescription-form-container {
+    width: 70%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    text-align: center;
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9fb;
+    border-left: 3px solid #4a90e2;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #555;
+}
+
+p {
+    font-size: 0.95em;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    resize: vertical;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}

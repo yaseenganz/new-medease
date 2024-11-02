@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Prescription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="prescription-form-container">
+        <header>
+            <h1>Digital Prescription</h1>
+        </header>
+
+        <form action="{% url 'submit_prescription' %}" method="post">
+            {% csrf_token %}
+
+            <!-- Doctor Information Section -->
+            <section class="doctor-info">
+                <h3>Doctor Information</h3>
+                <p><strong>Name:</strong> {{ doctor.user.get_full_name }}</p>
+                <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+                <p><strong>License Number:</strong> {{ doctor.license_number }}</p>
+            </section>
+
+            <!-- Patient Information Section -->
+            <section class="patient-info">
+                <h3>Patient Information</h3>
+                <p><strong>Name:</strong> {{ patient.first_name }} {{ patient.last_name }}</p>
+                <p><strong>Age:</strong> {{ patient.age }}</p>
+                <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+                <p><strong>Contact:</strong> {{ patient.contact_number }}</p>
+            </section>
+
+            <!-- Prescription Input Section -->
+            <section class="prescription-content">
+                <h3>Prescription</h3>
+                <label for="prescription-text">Prescription Details:</label>
+                <textarea id="prescription-text" name="prescription_text" rows="5" required></textarea>
+            </section>
+
+            <!-- Footer Section -->
+            <footer>
+                <button type="submit">Submit Prescription</button>
+            </footer>
+        </form>
+    </div>
+</body>
+</html>
