@@ -1,13 +1,16 @@
 from django.contrib import admin
-from . models import DoctorModel, HospitalModel
+from . models import DoctorModel, HospitalModel, PatientDetails
 
 
+class DoctorModelList(admin.ModelAdmin):
+    list_display = ('id', 'name', 'specialization')
+admin.site.register(DoctorModel, DoctorModelList)
 
+class HospitalModelList(admin.ModelAdmin):
+    list_display = ('id', 'name', 'phone_number')
+admin.site.register(HospitalModel, HospitalModelList)
 
-class DoctorList(admin.ModelAdmin):
-    list_display=['id','name','specialization']
-admin.site.register(DoctorModel,DoctorList)
+class PatientDetailsList(admin.ModelAdmin):
+    list_display = ('name', 'age', 'gender', 'hospital')
+admin.site.register(PatientDetails, PatientDetailsList)
 
-class HospitalList(admin.ModelAdmin):
-    list_display = ['id','name','phone_number']
-admin.site.register(HospitalModel,HospitalList)

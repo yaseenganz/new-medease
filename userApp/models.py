@@ -17,3 +17,7 @@ class PatientModel(models.Model):
 
     def str(self):
         return self.user.username
+    
+
+class Priscription(models.Model):
+    pass

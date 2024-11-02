@@ -1,6 +1,6 @@
 from django import forms
 from .models import CustomUser
-from .models import DoctorModel,HospitalModel
+from .models import DoctorModel, PatientDetails,  HospitalModel
 
 class DoctorForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -28,6 +28,13 @@ class DoctorForm(forms.ModelForm):
             email = self.cleaned_data.get('email')
             if CustomUser.objects.filter(email=email).exists():
                 raise forms.ValidationError("This email is already registered")
+
+
+class tokenCreation(forms.ModelForm):
+    class Meta:
+        modle = PatientDetails
+        files = ['name', 'age', 'gender']
+        
             
 
 class HospitalForm(forms.ModelForm):

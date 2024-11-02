@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'userApp',
     'hospital',
     'farmacy',
-    'tokenSystem',
 ]
 
 MIDDLEWARE = [
