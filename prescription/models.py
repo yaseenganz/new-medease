@@ -1,17 +1,13 @@
 from django.db import models
 from hospital.models import PatientDetails, HospitalModel
+from userApp.models import PatientModel
+from hospital.models import DoctorModel
 
 
-class GetPatient(models.Model):
-    hospital = models.CharField(editable=False)
-    user = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
-    age = models.IntegerField(editable=False)
 
-    def save(self, *args, **kwargs):
-        if self.user:
-            self.hospital = self.user.hospital
-            self.age = self.user.age
-        super().save(*args, **kwargs)
-    
-    def __str__(self):
-        return f"{self.user.name}   Age: {self.age}  Hospital: {self.hospital}"
+class Prescription(models.Model):
+    patient = models.ForeignKey(PatientModel,on_delete=models.CASCADE)
+    doctor = models.ForeignKey(DoctorModel,on_delete=models.CASCADE)
+    hospital = models.ForeignKey(HospitalModel,on_delete=models.CASCADE)
+    text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)

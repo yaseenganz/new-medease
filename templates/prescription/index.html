@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Prescription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="prescription-form-container">
+        <header>
+            <h1>Digital Prescription</h1>
+        </header>
+
+        <!-- Token Number Section -->
+        <form action="{% url 'submit_prescription' %}" method="post" id="token-form">
+            {% csrf_token %}
+            <section class="token-section">
+                <h3>Patient Token</h3>
+                <label for="token-number">Enter Patient Token Number:</label>
+                <input type="number" id="token-number" name="token_number" required>
+                <button type="button" id="fetch-patient-data">Fetch Patient Data</button>
+            </section>
+        </form>
+
+        <!-- Doctor Information Section -->
+        <section class="doctor-info">
+            <h3>Doctor Information</h3>
+            <p><strong>Name:</strong> {{ doctor.user.get_full_name }}</p>
+            <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+            <p><strong>License Number:</strong> {{ doctor.license_number }}</p>
+        </section>
+
+        <!-- Patient Information Section -->
+        <section class="patient-info" id="patient-info-section" style="display: none;">
+            <h3>Patient Information</h3>
+            <p><strong>Name:</strong> <span id="patient-name"></span></p>
+            <p><strong>Age:</strong> <span id="patient-age"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="patient-dob"></span></p>
+            <p><strong>Contact:</strong> <span id="patient-contact"></span></p>
+        </section>
+
+        <!-- Prescription Input Section -->
+        <form action="{% url 'submit_prescription' %}" method="post" id="prescription-form">
+            {% csrf_token %}
+            <section class="prescription-content">
+                <h3>Prescription</h3>
+                <label for="prescription-text">Prescription Details:</label>
+                <textarea id="prescription-text" name="prescription_text" rows="5" required></textarea>
+            </section>
+
+            <!-- Footer Section -->
+            <footer>
+                <button type="submit">Submit Prescription</button>
+            </footer>
+        </form>
+    </div>
+
+    <!-- JavaScript to Fetch Patient Data -->
+    <script>
+        document.getElementById('fetch-patient-data').addEventListener('click', function() {
+            const tokenNumber = document.getElementById('token-number').value;
+            fetch(`/token/view//${tokenNumber}/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('patient-info-section').style.display = 'block';
+                        document.getElementById('patient-name').textContent = data.patient.name;
+                        document.getElementById('patient-age').textContent = data.patient.age;
+                        document.getElementById('patient-dob').textContent = data.patient.date_of_birth;
+                        document.getElementById('patient-contact').textContent = data.patient.contact_number;
+                    } else {
+                        alert('No patient found with this token number.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
