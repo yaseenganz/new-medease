@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .forms import DoctorForm,HospitalForm
+from .forms import DoctorForm,HospitalForm, tokenCreation
 from .models import DoctorModel, HospitalModel, PatientDetails
 from django.contrib.auth import authenticate, login as auth_login
 
@@ -45,16 +44,27 @@ def HospitalRegistration(request):
 
 
 def create_token(request):
+    # if request.method == "POST":
+    #     name = request.POST.get("name")
+    #     age = request.POST.get("age")
+    #     gender = request.POST.get("gender")
+
+    #     patient = PatientDetails(name=name, age=age, gender=gender)
+    #     patient.save()
     if request.method == "POST":
-        name = request.POST.get("name")
-        age = request.POST.get("age")
-        gender = request.POST.get("gender")
-
-        # Create the patient instance
-        patient = PatientDetails(name=name, age=age, gender=gender)
-        patient.save()
+        form = tokenCreation(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            age = form.cleaned_data['age']
+            gender = form.cleaned_data['gender']
+            doctor = form.cleaned_data['doctor']
+            hospital = form.cleaned_data['hospital']
+            
+            instance = PatientDetails.objects.create(name=name, age=age, gender=gender, doctor=doctor, hospital=hospital)
+            instance.save()
+            return redirect('dashboard-view')
+    else:
+        form = tokenCreation()
         
-        # Response with the created token number
-        return HttpResponse(f"Created Token Successfully: {patient.token_number}")
 
-    return render(request, "token/token.html")
+    return render(request, "token/token.html", { 'form': form })
