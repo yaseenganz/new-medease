@@ -5,47 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Homepage</title>
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Homepage</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="home">
-            <h2>Home Section</h2>
-            <p>This is the home section of the webpage.</p>
-        </section>
-        
-        <section id="about">
-            <h2>About Section</h2>
-            <p>This section provides information about the website.</p>
-        </section>
-        
-        <section id="services">
-            <h2>Services Section</h2>
-            <p>Here you can find details about the services offered.</p>
-        </section>
-        
-        <section id="contact">
-            <h2>Contact Section</h2>
-            <p>Feel free to reach out through the contact form.</p>
-        </section>
-        <a href="{% url 'log_out' %}" class="login">Logout</a>
+<body>
+  <header>
+    <h1>MedEase</h1>
+    <p>Your Health, Simplified</p>
+  </header>
 
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 My Homepage. All rights reserved.</p>
-    </footer>
+  <section class="hero">
+    <img src="hero-image.jpg" alt="Healthcare Image">
+    <div class="hero-text">
+      <h2>Welcome to the Future of Healthcare</h2>
+      <p>Experience seamless healthcare at your fingertips.</p>
+      <button class="btn">Learn More</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-box">
+      <img src="feature1.png" alt="Feature 1">
+      <h3>Easy Appointment Booking</h3>
+      <p>Book appointments with top doctors in seconds.</p>
+    </div>
+    <div class="feature-box">
+      <img src="feature2.png" alt="Feature 2">
+      <h3>Digital Prescriptions</h3>
+      <p>Receive and manage your prescriptions online.</p>
+    </div>
+    <div class="feature-box">
+      <img src="feature3.png" alt="Feature 3">
+      <h3>Unified Medical Records</h3>
+      <p>Access your medical history anytime, anywhere.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 MedEase. All rights reserved.</p>
+  </footer>
+
+
 </body>
 </html>
