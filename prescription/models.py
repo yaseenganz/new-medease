@@ -3,9 +3,7 @@ from hospital.models import PatientDetails, HospitalModel
 
 
 class GetPatient(models.Model):
-    hospital = models.CharField(editable=False)
     user = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
-    age = models.IntegerField(editable=False)
 
     def save(self, *args, **kwargs):
         if self.user:
@@ -15,3 +13,4 @@ class GetPatient(models.Model):
     
     def __str__(self):
         return f"{self.user.name}   Age: {self.age}  Hospital: {self.hospital}"
+
