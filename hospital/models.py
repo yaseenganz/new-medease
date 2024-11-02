@@ -15,13 +15,13 @@ class DoctorModel(models.Model):
     )
     specialization = models.CharField(max_length=10, choices=SPECIALIZATION_CHOICES)
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
 class HospitalModel(models.Model):
     name = models.CharField(max_length=20)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10,unique=True)
     location = models.TextField()
     doctors = models.ManyToManyField(DoctorModel, related_name="hospitals", blank=True)
     license_number = models.CharField(max_length=6)
