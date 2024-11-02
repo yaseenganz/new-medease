@@ -7,5 +7,9 @@ urlpatterns = [
     path('patient/',include('userApp.urls')),
     path('doctor/', include('hospital.urls')),
     path('hospital/',include('hospital.urls')),
+
+    path('pharmacy/',include('farmacy.urls'))
+
     path('prescription/', include('prescription.urls')),
+
 ]
