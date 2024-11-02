@@ -1,6 +1,6 @@
 from django import forms
 from .models import CustomUser
-from .models import DoctorModel, PatientDetails
+from .models import DoctorModel, PatientDetails,  HospitalModel
 
 class DoctorForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -21,6 +21,8 @@ class DoctorForm(forms.ModelForm):
             phone_number = self.cleaned_data.get('phone_number')
             if not phone_number.isdigit():
                 raise forms.ValidationError("Phone number must contain only digits.")
+            elif CustomUser.objects.filter(phone_number=phone_number).exists():
+                raise forms.ValidationError("This number already registerd")
             
         def clean_email(self):
             email = self.cleaned_data.get('email')
@@ -33,3 +35,20 @@ class tokenCreation(forms.ModelForm):
         modle = PatientDetails
         files = ['name', 'age', 'gender']
         
+            
+
+class HospitalForm(forms.ModelForm):
+    class Meta:
+        model = HospitalModel
+        fields = ['name', 'phone_number', 'location', 'license_number']
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get("phone_number")
+        if not phone_number.isdigit():
+            raise forms.ValidationError("Phone number should contain only digits.")
+        
+        
+        if HospitalModel.objects.filter(phone_number=phone_number).exists():
+            raise forms.ValidationError("This number is already registered.")
+        
+        return phone_number

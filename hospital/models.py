@@ -21,7 +21,7 @@ class DoctorModel(models.Model):
 
 class HospitalModel(models.Model):
     name = models.CharField(max_length=20)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10,unique=True)
     location = models.TextField()
     doctors = models.ManyToManyField(DoctorModel, related_name="hospitals", blank=True)
     license_number = models.CharField(max_length=6)
