@@ -2,15 +2,12 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class CustomUser(AbstractUser):
-    full_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=10,unique=True)
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=10,unique=True)
-
+    full_name = models.CharField(max_length=20)
     def str(self):
-        return self.username
-
-
+        return self.full_name
+    
+    
 
 class PatientModel(models.Model):
     user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
