@@ -28,7 +28,7 @@ def submit_prescription(request):
 
     else:
         form = SubmitPrescription()
-    return render(request, 'prescription/index.html', {'form': form})
+    return render(request, 'prescription.html', {'form': form})
 
 def view_prescription(request, pk):
     prescription = get_object_or_404(Prescriptions, pk=pk)
