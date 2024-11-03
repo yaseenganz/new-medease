@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Details</title>
+  <link rel="stylesheet" href="{% static "css/token-page/token-style.css" %}">
+</head>
+<body>
+  <h1>Patient Details</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required>
+    <br>
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required>
+    <br>
+    <label for="gender">Gender:</label>
+    <select name="gender" id="gender" required>
+      <option value="">-- Select Gender --</option>
+      {% for f in form.gender %}
+        <option value="3">{{ f }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="hospital">Hospital:</label>
+    <select name="hospital" id="hospital" required>
+      <option value="">-- Select Hospital --</option>
+      {% for f in form.hospital %}
+        <option value="3">{{ f }}</option>
+      {% endfor %}
+      </select>
+    <br>
+    <label for="doctor">Doctor (Optional):</label>
+    <select name="doctor" id="doctor">
+      <option value="">-- Select Doctor --</option>
+      {% for f in form.doctor %}
+        <option value="3">{{ f }}</option>
+      {% endfor %}
+      </select>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+  {% if form.errors %}
+    <h2>There are errors in your form! Please fix them and submit again.</h2>
+  {% endif %}
+</body>
+</html>

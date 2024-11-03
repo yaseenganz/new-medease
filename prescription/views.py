@@ -43,3 +43,5 @@ def view_prescription(request, pk):
         }
     }
     return JsonResponse(context)
+
+

@@ -8,6 +8,10 @@ from django.http.response import HttpResponseRedirect
 
 User = get_user_model()
 
+
+def main_page(request):
+    return render(request, "mainpages/main_page.html")
+
 @login_required(login_url="")
 def DashBoard(request):
     return render(request,'home.html')
