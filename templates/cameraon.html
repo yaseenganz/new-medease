@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="cameraButton">Camera on</button>
+    <p id="qrResult">QR Code Data: <span id="qrData">None</span></p>
+
+    <script>
+        $(document).ready(function(){
+            $("#cameraButton").click(function(){
+                $.ajax({
+                    url: "{% url 'sent_data' %}",  // URL to your `sent_data` view
+                    type: "POST",  // Ensure the request method is POST
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}'  // Add CSRF token
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.data) {
+                            $("#qrData").text(response.data);  // Display scanned QR data
+                        } else {
+                            $("#qrData").text("No QR data found.");
+                        }
+                    },
+                    error: function() {
+                        alert("An error occurred while scanning the QR code.");
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

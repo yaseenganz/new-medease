@@ -44,13 +44,6 @@ def HospitalRegistration(request):
 
 
 def create_token(request):
-    # if request.method == "POST":
-    #     name = request.POST.get("name")
-    #     age = request.POST.get("age")
-    #     gender = request.POST.get("gender")
-
-    #     patient = PatientDetails(name=name, age=age, gender=gender)
-    #     patient.save()
     if request.method == "POST":
         form = tokenCreation(request.POST)
         if form.is_valid():
@@ -62,7 +55,7 @@ def create_token(request):
             
             instance = PatientDetails.objects.create(name=name, age=age, gender=gender, doctor=doctor, hospital=hospital)
             instance.save()
-            return redirect('dashboard-view')
+        return render(request, "mainpages/success_page.html")
     else:
         form = tokenCreation()
         

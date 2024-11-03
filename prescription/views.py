@@ -24,7 +24,7 @@ def submit_prescription(request):
             instance.save()
 
             
-            return redirect('prescription_success')  
+            return redirect('view_prescription')
 
     else:
         form = SubmitPrescription()

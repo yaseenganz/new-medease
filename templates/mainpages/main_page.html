@@ -13,8 +13,9 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Signup</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="{% url "patient_register" %}">Signup</a></li>
+            <li><a href="{% url "login_view" %}">Login</a></li>
+            <li><a href="{% url "log_out" %}">Logout</a></li>
         </ul>
     </nav>
 
